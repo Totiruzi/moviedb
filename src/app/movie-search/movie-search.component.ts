@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-movie-search',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit {
-
+  @Output() searchedMovie = new EventEmitter<string>();
+  movie = '';
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onFormSubmit(event: any) {
+    event.preventDefault();
+    this.searchedMovie.emit(this.movie);
+  }
+
+  onInputChange(event: any) {
+    this.movie = event.target.value;
   }
 
 }

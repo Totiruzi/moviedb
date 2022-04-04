@@ -1,1 +1,11 @@
-<p>movie-search works!</p>
+<div class="box">
+  <form (submit) = onFormSubmit($event)>
+    <input 
+      type="text" 
+      name="search" 
+      placeholder="Search..." 
+      (input)="onInputChange($event)"
+      class="input" 
+    />
+  </form>
+</div>
