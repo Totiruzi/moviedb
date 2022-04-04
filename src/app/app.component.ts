@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MoviedbService } from './moviedb.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'movie-db';
+  movieResults = [];
+  constructor(private movieDb : MoviedbService) { }
+
+  searchedMovie(movie: string) {
+    const result = this.movieDb.search(movie).subscribe((data: any) => {
+      this.movieResults = data.results;
+    });
+    console.log(result);
+  }
 }

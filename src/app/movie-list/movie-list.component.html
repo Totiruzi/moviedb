@@ -1,1 +1,19 @@
-<p>movie-list works!</p>
+{{movieResults.length}}
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Overview</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let result of movieResults">
+      <td>
+          {{result['title']}}
+      </td>
+      <td [innerHTML]= "result['overview']"></td>
+    </tr>
+  </tbody>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+</table>

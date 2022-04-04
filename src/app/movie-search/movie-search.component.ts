@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MoviedbService } from '../moviedb.service';
 
 @Component({
   selector: 'app-movie-search',
@@ -8,7 +9,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class MovieSearchComponent implements OnInit {
   @Output() searchedMovie = new EventEmitter<string>();
   movie = '';
-  constructor() { }
+  pageNumber: number = 1;
+  constructor(private moviedbService: MoviedbService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +22,14 @@ export class MovieSearchComponent implements OnInit {
 
   onInputChange(event: any) {
     this.movie = event.target.value;
+  }
+
+  previousPage(event: any) {}
+
+  nextPage(event: any) {
+    this.pageNumber++;
+    console.log(this.pageNumber);
+    // this.moviedbService.getNextPage(this.movie);
   }
 
 }

@@ -3,9 +3,12 @@
     <input 
       type="text" 
       name="search" 
-      placeholder="Search..." 
+      placeholder="Search for a movie" 
       (input)="onInputChange($event)"
       class="input" 
     />
+
   </form>
+  <button type ="button" (click)="previousPage($event)">previous page</button>
+  <button (click) = "nextPage($event)">next page</button>
 </div>
