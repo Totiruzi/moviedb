@@ -14,6 +14,5 @@ export class AppComponent {
     const result = this.movieDb.search(movie).subscribe((data: any) => {
       this.movieResults = data.results;
     });
-    console.log(result);
   }
 }
