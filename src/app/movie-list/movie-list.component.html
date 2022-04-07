@@ -1,4 +1,5 @@
-{{movieResults.length}}
+<ng-container *ngIf="movieResults?.length > 0">
+{{movieResults?.length}}
 <table>
   <thead>
     <tr>
@@ -7,13 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let result of movieResults">
-      <td>
-          {{result['title']}}
-      </td>
-      <td>{{result['overview']}}</td>
-    </tr>
-  </tbody>
-
-  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-</table>
+      <tr *ngFor="let movie of movieResults">
+        <td>{{movie.title}}</td>
+        <td>{{movie.overview}}</td>
+      </tr>
+    </tbody>
+    
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </table>
+</ng-container>

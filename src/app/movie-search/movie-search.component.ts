@@ -17,19 +17,29 @@ export class MovieSearchComponent implements OnInit {
 
   onFormSubmit(event: any) {
     event.preventDefault();
+    console.log("🚀 ~ file: movie-search.component.ts ~ line 19 ~ MovieSearchComponent ~ onFormSubmit ~ event", event)
     this.moviedbService.movieSearch.next(event.target.value);
     // this.searchedMovie.emit(this.moviedbService.movieSearch);
   }
 
   onInputChange(event: any) {
-    this.moviedbService.movieSearch.next(event.target.value);
-    }
+    const searchText = event.target.value
+    // this.performeSearch(searchText);
+    this.moviedbService.movieSearch.next(searchText);
+  }
 
-  previousPage(event: any) { }
+  performeSearch(searchText: any) {
+    if (searchText.length > 2) {
+    }
+  }
+
+  previousPage(event: any) { 
+    console.log('Calling Previous Page Http Request')
+    this.moviedbService.getPreviousPage();
+  }
 
   nextPage(event: any) {
-    // this.pageNumber++;
-    console.log(this.pageNumber);
+    console.log('Calling Next Page Http Request')
     this.moviedbService.getNextPage();
   }
 
