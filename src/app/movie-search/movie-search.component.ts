@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { MoviedbService } from '../moviedb.service';
 
 @Component({
@@ -8,7 +9,6 @@ import { MoviedbService } from '../moviedb.service';
 })
 export class MovieSearchComponent implements OnInit {
   @Output() searchedMovie = new EventEmitter<string>();
-  movie = '';
   pageNumber: number = 1;
   constructor(private moviedbService: MoviedbService) { }
 
@@ -17,19 +17,20 @@ export class MovieSearchComponent implements OnInit {
 
   onFormSubmit(event: any) {
     event.preventDefault();
-    this.searchedMovie.emit(this.movie);
+    this.moviedbService.movieSearch.next(event.target.value);
+    // this.searchedMovie.emit(this.moviedbService.movieSearch);
   }
 
   onInputChange(event: any) {
-    this.movie = event.target.value;
-  }
+    this.moviedbService.movieSearch.next(event.target.value);
+    }
 
-  previousPage(event: any) {}
+  previousPage(event: any) { }
 
   nextPage(event: any) {
-    this.pageNumber++;
+    // this.pageNumber++;
     console.log(this.pageNumber);
-    // this.moviedbService.getNextPage(this.movie);
+    this.moviedbService.getNextPage();
   }
 
 }
